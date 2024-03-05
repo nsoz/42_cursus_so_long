@@ -6,7 +6,7 @@
 /*   By: muoz <muoz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 00:12:16 by muoz              #+#    #+#             */
-/*   Updated: 2024/03/06 02:20:56 by muoz             ###   ########.fr       */
+/*   Updated: 2024/03/06 02:33:46 by muoz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	ft_get_textures(t_data *info)
 void	ft_map_to_screen(t_data *info, int i, int j)
 {
 	mlx_clear_window(info->mlx_ptr, info->mlx_win_ptr);
-	printf("%d %d\n", info->high, info->len);
 	while (++i < info->high)
 	{
 		j = -1;
