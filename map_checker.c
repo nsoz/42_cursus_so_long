@@ -6,11 +6,34 @@
 /*   By: muoz <muoz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 03:19:20 by muoz              #+#    #+#             */
-/*   Updated: 2024/02/28 17:56:29 by muoz             ###   ########.fr       */
+/*   Updated: 2024/03/06 00:55:12 by muoz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int	ft_count(char **map_copy, char c)
+{
+	int	i;
+	int	x;
+	int	y;
+
+	i = 0;
+	x = 0;
+	y = 0;
+	while (map_copy[y] != NULL)
+	{
+		while (map_copy[y][x] != '\0')
+		{
+			if (map_copy[y][x] == c)
+				i++;
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+	return (i);
+}
 
 int	ft_find(char **map_copy, char flag)
 {
@@ -72,7 +95,7 @@ void	ft_check_map_design(char **map_copy)
 {
 	if (!map_copy)
 		ft_error_massage(5);
-	ft_check_element(map_copy);
+	ft_check_element(map_copy, 0);
 	ft_flood_fill(map_copy, ft_find(map_copy, 'x'), ft_find(map_copy, 'y'));
 	ft_is_able_to_play(map_copy);
 }

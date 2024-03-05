@@ -1,28 +1,34 @@
-PROGRAMNAME = so_long
+NAME = so_long
 
-CC = gcc
-CFLAGS = -Wall -Werror -Wextra
-
-SRC = so_long.c processing.c map_checker.c ./get_next_line/get_next_line.c ./get_next_line/get_next_line_utils.c map_parser.c
+SRC = so_long.c processing.c map_checker.c ./get_next_line/get_next_line.c ./get_next_line/get_next_line_utils.c map_parser.c processes.c press.c
 
 OBJS = $(SRC:.c=.o)
 
-LIBFT = ./libft/libft.a
+MLX = ./minilibx
+LIBFT = ./libft
 
-LFLAGS = $(LIBFT)
+MINILIBX_PATH = ./minilibx
+LIBFT_PATH = ./libft
 
-all: $(PROGRAMNAME)
+CFLAGS = -Wall -Werror -Wextra -I$(MLX) -I$(LIBFT_PATH)
 
-$(PROGRAMNAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(LFLAGS) -o $(PROGRAMNAME)
+all: $(NAME)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+$(NAME): mlx libft
+	gcc $(CFLAGS) -o $(NAME) $(SRC) -L$(MINILIBX_PATH) -lmlx -L$(LIBFT_PATH) -lft -framework OpenGL -framework AppKit
 
 clean:
 	rm -rf $(OBJS)
+	rm -rf $(MINILIBXOBJ)
+	rm -rf ./minilibx/libmlx.a
 
 fclean: clean
-	rm -rf $(PROGRAMNAME)
+	rm -rf $(NAME)
 
 re: fclean all
+
+mlx:
+	make -C $(MINILIBX_PATH) all
+
+libft:
+	make -C $(LIBFT_PATH) all

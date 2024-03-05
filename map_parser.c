@@ -6,7 +6,7 @@
 /*   By: muoz <muoz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 03:15:01 by muoz              #+#    #+#             */
-/*   Updated: 2024/02/28 14:47:28 by muoz             ###   ########.fr       */
+/*   Updated: 2024/03/06 00:57:37 by muoz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,32 +64,32 @@ void	ft_check_stranger_things(char **map_holder)
 			&& map_holder[i][c] != 'E'
 			&& map_holder[i][c] != 'C'
 			&& map_holder[i][c] != 'P')
+			{
+				ft_free_all(map_holder);
 				ft_error_massage(10);
+			}
 		}
 		c = -1;
 	}
-	if (map_holder[i] != NULL)
-		ft_error_massage(10);
 	ft_check_border_line(map_holder);
 }
 
-void	ft_error_sender(int ext, int collecteable, int player)
+void	ft_error_sender(int ext, int colecteable, int player)
 {
 	if (ext == 0 || ext > 1)
 		ft_error_massage(6);
 	else if (player == 0 || player > 1)
 		ft_error_massage(7);
-	else if (collecteable == 0)
+	else if (colecteable == 0)
 		ft_error_massage(8);
 }
 
-void	ft_check_element(char **map_holder)
+void	ft_check_element(char **map_holder, int colectable)
 {
 	int	i;
 	int	j;
 	int	ext;
 	int	player;
-	int	collecteable;
 
 	player = 0;
 	ext = 0;
@@ -105,9 +105,9 @@ void	ft_check_element(char **map_holder)
 			if (map_holder[i][j] == 'P')
 				player += 1;
 			if (map_holder[i][j] == 'C')
-				collecteable = 1;
+				colectable = 1;
 		}
 		j = -1;
 	}
-	ft_error_sender(ext, collecteable, player);
+	ft_error_sender(ext, colectable, player);
 }

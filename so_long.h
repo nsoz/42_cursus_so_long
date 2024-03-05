@@ -6,7 +6,7 @@
 /*   By: muoz <muoz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 18:40:43 by muoz              #+#    #+#             */
-/*   Updated: 2024/02/28 16:19:12 by muoz             ###   ########.fr       */
+/*   Updated: 2024/03/06 00:54:17 by muoz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,39 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include "mlx.h"
 # include "./libft/libft.h"
 # include "./get_next_line/get_next_line.h"
+
+typedef struct s_data
+{
+	char	**map;
+	char	**map_copy;
+	void	*mlx_ptr;
+	void	*mlx_win_ptr;
+	void	*c_front;
+	void	*zero;
+	void	*colectable;
+	void	*one;
+	void	*exit;
+	int		len;
+	int		high;
+	int		playerx;
+	int		playery;
+	int		colec_count;
+}	t_data;
 
 void	ft_error_massage(int flag);
 void	ft_processing(char *str);
 void	ft_check_map_design(char **map_copy);
-void	ft_check_element(char **map_holder);
+void	ft_check_element(char **map_holder, int colectable);
 void	ft_free_all(char **arr);
+void	ft_mlx_processes(t_data *info);
+int		ft_find(char **map_copy, char flag);
+int		ft_count(char **map_copy, char c);
+void	ft_map_to_screen(t_data *info, int i, int j);
+int		ft_press_w(t_data *info, char **map);
+int		ft_press_s(t_data *info, char **map);
+int		ft_press_a(t_data *info, char **map);
+int		ft_press_d(t_data *info, char **map);
 #endif

@@ -6,7 +6,7 @@
 /*   By: muoz <muoz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 18:47:36 by muoz              #+#    #+#             */
-/*   Updated: 2024/02/28 17:49:45 by muoz             ###   ########.fr       */
+/*   Updated: 2024/03/06 02:25:59 by muoz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,21 @@ void	ft_free_all(char **arr)
 
 int	ft_row_cal(char *str)
 {
-	int	fd;
-	int	row;
+	char	*ret;
+	int		fd;
+	int		row;
 
 	row = 0;
 	fd = open(str, O_RDONLY);
+	ret = get_next_line(fd);
 	if (fd == -1)
 		ft_error_massage(3);
-	while (get_next_line(fd) != NULL)
+	while (ret != NULL)
+	{
 		row++;
+		free(ret);
+		ret = get_next_line(fd);
+	}
 	close (fd);
 	return (row + 1);
 }
@@ -73,26 +79,28 @@ char	**ft_read(char *str)
 	len_of_lay = ft_strlen(all_of_fd[lay]);
 	while ((all_of_fd[lay] != NULL))
 	{
-		if (ft_strchr(all_of_fd[lay], '\n')
-			&& len_of_lay != ft_strlen(all_of_fd[lay]))
-		{
-			ft_free_all(all_of_fd);
+		if ((ft_strchr(all_of_fd[lay], '\n')
+				&& len_of_lay != ft_strlen(all_of_fd[lay]))
+			|| (!ft_strchr(all_of_fd[lay], '\n')
+				&& len_of_lay != ft_strlen(all_of_fd[lay]) + 1))
 			ft_error_massage(4);
-		}
 		lay++;
 		all_of_fd[lay] = get_next_line(fd);
 	}
 	return (all_of_fd);
 }
 
-void	ft_processing(char *str) 
+void	ft_processing(char *str)
 {
-	char	**map;
-	char	**map_copy;
+	t_data	info;
 
-	map = ft_read(str);
-	map_copy = ft_get_copy(map);
-	ft_check_map_design(map_copy);
-	ft_free_all(map);
-	ft_free_all(map_copy);
+	info.high = ft_row_cal(str) - 1;
+	info.map = ft_read(str);
+	info.map_copy = ft_get_copy(info.map);
+	ft_check_map_design(info.map_copy);
+	info.len = ft_strlen(info.map[0]) - 1;
+	info.playerx = ft_find(info.map, 'x');
+	info.playery = ft_find(info.map, 'y');
+	info.colec_count = ft_count(info.map, 'C');
+	ft_mlx_processes(&info);
 }
