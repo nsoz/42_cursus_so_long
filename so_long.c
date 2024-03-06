@@ -6,7 +6,7 @@
 /*   By: muoz <muoz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:25:21 by muoz              #+#    #+#             */
-/*   Updated: 2024/03/06 13:43:02 by muoz             ###   ########.fr       */
+/*   Updated: 2024/03/06 14:41:33 by muoz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,29 @@ void	ft_error_massage(int flag)
 	else if (flag == 12)
 		write(1, "texture file couldn't find", 26);
 	exit(1);
+}
+
+int	ft_count(char **map_copy, char c)
+{
+	int	i;
+	int	x;
+	int	y;
+
+	i = 0;
+	x = 0;
+	y = 0;
+	while (map_copy[y] != NULL)
+	{
+		while (map_copy[y][x] != '\0')
+		{
+			if (map_copy[y][x] == c)
+				i++;
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+	return (i);
 }
 
 char	*ft_reach_to_extension(char *str)
