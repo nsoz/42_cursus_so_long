@@ -6,7 +6,7 @@
 /*   By: muoz <muoz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:25:21 by muoz              #+#    #+#             */
-/*   Updated: 2024/03/06 12:24:14 by muoz             ###   ########.fr       */
+/*   Updated: 2024/03/06 13:43:02 by muoz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,22 @@ char	*ft_reach_to_extension(char *str)
 {
 	char	*new_str;
 
-	new_str = ft_strrchr(str, '.');
-	new_str += ft_strlen(new_str) - 4;
+	new_str = NULL;
+	if (ft_strchr(str, '.'))
+	{
+		new_str = ft_strrchr(str, '.');
+		new_str += ft_strlen(new_str) - 4;
+		if (new_str && ft_strncmp(new_str, ".ber", 4))
+		{
+			write(1, "wrong extension", 15);
+			exit (1);
+		}
+	}
+	else
+	{
+		write(1, "wrong extension", 15);
+		exit (1);
+	}
 	return (new_str);
 }
 
