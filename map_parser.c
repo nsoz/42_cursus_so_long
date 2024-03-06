@@ -6,7 +6,7 @@
 /*   By: muoz <muoz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 03:15:01 by muoz              #+#    #+#             */
-/*   Updated: 2024/03/06 00:57:37 by muoz             ###   ########.fr       */
+/*   Updated: 2024/03/06 02:55:12 by muoz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,7 @@ void	ft_check_stranger_things(char **map_holder)
 			&& map_holder[i][c] != 'E'
 			&& map_holder[i][c] != 'C'
 			&& map_holder[i][c] != 'P')
-			{
-				ft_free_all(map_holder);
 				ft_error_massage(10);
-			}
 		}
 		c = -1;
 	}

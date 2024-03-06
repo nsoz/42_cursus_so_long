@@ -6,7 +6,7 @@
 /*   By: muoz <muoz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:25:21 by muoz              #+#    #+#             */
-/*   Updated: 2024/03/06 02:21:41 by muoz             ###   ########.fr       */
+/*   Updated: 2024/03/06 12:24:14 by muoz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_error_massage(int flag)
 	else if (flag == 11)
 		write(1, "game isn't able to play", 23);
 	else if (flag == 12)
-		write(1, "texture file couldn't find", 27);
+		write(1, "texture file couldn't find", 26);
 	exit(1);
 }
 

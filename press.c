@@ -1,14 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   press.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: muoz <muoz@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/06 03:49:48 by muoz              #+#    #+#             */
+/*   Updated: 2024/03/06 12:22:06 by muoz             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
-
-void	ft_print_step(void)
-{
-	static int	i = 0;
-
-	i++;
-	write(1, "step = ", 7);
-	ft_putnbr_fd(i, 1);
-	write(1, "\n", 1);
-}
 
 void	ft_finish(t_data *info)
 {
@@ -43,6 +45,7 @@ int	ft_press_w(t_data *info, char **map)
 	}
 	return (0);
 }
+
 int	ft_press_s(t_data *info, char **map)
 {
 	info->colec_count = ft_count(info->map, 'C');
@@ -63,6 +66,7 @@ int	ft_press_s(t_data *info, char **map)
 	}
 	return (0);
 }
+
 int	ft_press_a(t_data *info, char **map)
 {
 	info->colec_count = ft_count(info->map, 'C');
@@ -83,6 +87,7 @@ int	ft_press_a(t_data *info, char **map)
 	}
 	return (0);
 }
+
 int	ft_press_d(t_data *info, char **map)
 {
 	info->colec_count = ft_count(info->map, 'C');

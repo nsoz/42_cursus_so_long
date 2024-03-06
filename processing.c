@@ -6,20 +6,20 @@
 /*   By: muoz <muoz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 18:47:36 by muoz              #+#    #+#             */
-/*   Updated: 2024/03/06 02:25:59 by muoz             ###   ########.fr       */
+/*   Updated: 2024/03/06 12:06:55 by muoz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ft_free_all(char **arr)
+void	ft_print_step(void)
 {
-	int	i;
+	static int	i = 0;
 
-	i = -1;
-	while (arr[++i] != NULL)
-		free(arr[i]);
-	free(arr);
+	i++;
+	write(1, "step = ", 7);
+	ft_putnbr_fd(i, 1);
+	write(1, "\n", 1);
 }
 
 int	ft_row_cal(char *str)
